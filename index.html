@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAUUI - Discover the World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #FFF5E6, #E6F3FF);
+        }
+        .logo {
+            width: 150px;
+            height: 50px;
+            background-color: #ddd;
+            margin: 0 auto 20px;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+        .questions p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .cta {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .beta-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .beta-form h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .beta-form input,
+        .beta-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .beta-form button {
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .social-icons {
+            margin: 20px 0;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+            margin: 0 5px;
+            background-color: #ddd;
+            border-radius: 50%;
+        }
+        .language-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .language-switch a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switch">
+        <a href="#zh">中文</a>
+    </div>
+    <header>
+        <div class="logo"></div>
+    </header>
+    <main>
+        <h1>Discover the world through local people's knowledge, in your own way, without obstacles.</h1>
+        
+        <section class="questions">
+            <p>Too lazy to think where to visit?</p>
+            <p>Are you tired of figuring out which route is the most efficient?</p>
+            <p>Do you feel like all tourism articles sounds the same?</p>
+            <p>Eager to learn more about a culture but overwhelmed with Googling?</p>
+            <p>Or maybe, you're willing to share your country's stories and culture with foreigners, but don't have the time to guide them?</p>
+        </section>
+
+        <section class="cta">
+            <p>Come to KAUUI. We solve all these problems for you, and more.</p>
+        </section>
+
+        <form class="beta-form" id="betaForm">
+            <h3>Apply for Beta</h3>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <textarea id="interest" placeholder="What catches your interest?"></textarea>
+            <button type="submit">Sent</button>
+        </form>
+    </main>
+    <footer>
+        <p>Or Follow us for future information</p>
+        <div class="social-icons">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
+        </div>
+        <p>KAUUI, We are creating an innovative way for people to reach the world.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('betaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const interest = document.getElementById('interest').value;
+
+            axios.post('/api/beta-signup', {
+                name: name,
+                email: email,
+                interest: interest
+            })
+            .then(function (response) {
+                alert('Thank you for your interest! We will contact you soon.');
+                document.getElementById('betaForm').reset();
+            })
+            .catch(function (error) {
+                alert('An error occurred. Please try again later.');
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>
