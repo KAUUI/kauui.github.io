@@ -10,15 +10,27 @@
             line-height: 1.6;
             color: #333;
             max-width: 800px;
+            width: 90%;
             margin: 0 auto;
             padding: 20px;
             background: linear-gradient(to bottom right, #FFF5E6, #E6F3FF);
         }
         .logo {
-            width: 150px;
-            height: 50px;
-            background-color: #ddd;
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             margin: 0 auto 20px;
+        }
+        @media (max-width: 600px) {
+            .logo {
+                max-width: 400px;
+            }
+        }
+        @media (max-width: 400px) {
+            .logo {
+                max-width: 300px;
+            }
         }
         h1 {
             font-size: 24px;
@@ -71,13 +83,12 @@
         }
         .social-icons {
             margin: 20px 0;
+            display: flex;
+            justify-content: center;
         }
-        .social-icons img {
-            width: 24px;
-            height: 24px;
-            margin: 0 5px;
-            background-color: #ddd;
-            border-radius: 50%;
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
         }
         .language-switch {
             text-align: right;
@@ -88,14 +99,33 @@
             color: #333;
             font-size: 14px;
         }
+        .google-form-button {
+            display: inline-block;
+            background-color: #4285F4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .google-form-button:hover {
+            background-color: #3367D6;
+        }
+        .fa-brands {
+            font-size: 24px;
+            color: #333;
+            margin: 0 5px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="language-switch">
+    <!-- <div class="language-switch">
         <a href="#zh">中文</a>
-    </div>
+    </div> -->
     <header>
-        <div class="logo"></div>
+        <img src="./assets/logo.png" class="logo">
     </header>
     <main>
         <h1>Discover the world through local people's knowledge, in your own way, without obstacles.</h1>
@@ -112,48 +142,20 @@
             <p>Come to KAUUI. We solve all these problems for you, and more.</p>
         </section>
 
-        <form class="beta-form" id="betaForm">
+        <div class="beta-form">
             <h3>Apply for Beta</h3>
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="interest" placeholder="What catches your interest?"></textarea>
-            <button type="submit">Sent</button>
-        </form>
+            <p>Interested in joining our beta? Click the button below to fill out our application form.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScBi4xVbqVABuNt4GQ_iKITUSCylEEeZd5ftQ8uQSUcCboNwQ/viewform" target="_blank" class="google-form-button">Apply for Beta</a>
+        </div>
     </main>
     <footer>
         <p>Or Follow us for future information</p>
         <div class="social-icons">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3C/svg%3E" alt="Social Icon">
+            <a href="https://www.instagram.com/__kauui.app__" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
         </div>
         <p>KAUUI, We are creating an innovative way for people to reach the world.</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.getElementById('betaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const interest = document.getElementById('interest').value;
-
-            axios.post('/api/beta-signup', {
-                name: name,
-                email: email,
-                interest: interest
-            })
-            .then(function (response) {
-                alert('Thank you for your interest! We will contact you soon.');
-                document.getElementById('betaForm').reset();
-            })
-            .catch(function (error) {
-                alert('An error occurred. Please try again later.');
-                console.error(error);
-            });
-        });
-    </script>
 </body>
 </html>
